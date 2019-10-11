@@ -139,6 +139,19 @@ function loadStatsPage()
 						4. Update the second table to show the total number of wins/losses for the Buffs.
 */
 
+
+
+function loadPlayersPage(){
+    var value="";
+    var i;
+    for (i=0; i<players.length; i++)
+    {
+        value+="<a class='dropdown-item' href='#' onclick='switchPlayers("+i+")'>" +players[i].name + "</a>";  
+    }
+    document.getElementById('player_selector').innerHTML=value;
+
+}
+
 /*
 	Football Player Information Page
 		loadPlayersPage method:
@@ -158,6 +171,25 @@ function loadStatsPage()
 						
 					After setting all of the anchor tags, update the innerHTML of the dropdown menu.
 					As a note, the id for the dropdown menu is player_selector.
+                    
+        */
+function switchPlayers(playerNum)
+{
+    document.getElementById('p_year').innerHTML= players[playerNum].year;
+    document.getElementById('p_major').innerHTML= players[playerNum].major;
+    document.getElementById('g_played').innerHTML= players[playerNum].games_played;
+    document.getElementById('player_img').src=players[playerNum].img;
+    document.getElementById('player_img').alt=players[playerNum].alt;
+    document.getElementById('p_yards').innerHTML= players[playerNum].pass_yards;
+    document.getElementById('r_yards').innerHTML= players[playerNum].rushing_yards;
+    document.getElementById('rec_yards').innerHTML= players[playerNum].receiving_yards;
+    
+    //Maths
+    document.getElementById('avg_p_yards').innerHTML= (players[playerNum].pass_yards/players[playerNum].games_played).toFixed(3);
+    document.getElementById('avg_r_yards').innerHTML= (players[playerNum].rushing_yards/players[playerNum].games_played).toFixed(3);
+    document.getElementById('avg_rec_yards').innerHTML= (players[playerNum].receiving_yards/players[playerNum].games_played).toFixed(3);
+}
+/*
 		
 		switchPlayers(playerNum) method:
 			parameters: 
